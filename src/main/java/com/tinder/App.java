@@ -1,7 +1,7 @@
-package main.tinder;
+package main.java.com.tinder;
 
-import main.tinder.Connection.DoConnection;
-import main.tinder.Servlets.DefaultServlet;
+import main.java.com.tinder.Connection.DoConnection;
+import main.java.com.tinder.Servlets.DefaultServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;

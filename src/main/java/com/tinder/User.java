@@ -1,4 +1,4 @@
-package main.tinder;
+package main.java.com.tinder;
 
 public class User {
 

@@ -1,4 +1,4 @@
-package main.tinder.Connection;
+package main.java.com.tinder.Connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

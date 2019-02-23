@@ -1,6 +1,6 @@
-package main.tinder.DAO;
+package main.java.com.tinder.DAO;
 
-import main.tinder.User;
+import main.java.com.tinder.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
