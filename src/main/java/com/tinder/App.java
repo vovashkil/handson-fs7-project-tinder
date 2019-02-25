@@ -1,7 +1,7 @@
 package main.java.com.tinder;
 
 import main.java.com.tinder.Connection.DoConnection;
-import main.java.com.tinder.Servlets.DefaultServlet;
+import main.java.com.tinder.Servlets.UsersServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -18,7 +18,7 @@ public class App {
         ServletContextHandler handler = new ServletContextHandler();
         server.setHandler(handler);
 
-        handler.addServlet(new ServletHolder(new DefaultServlet()), "/");
+        handler.addServlet(new ServletHolder(new UsersServlet()), "/users");
 
         server.start();
         server.join();
