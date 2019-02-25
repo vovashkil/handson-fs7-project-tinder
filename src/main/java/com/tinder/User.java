@@ -4,12 +4,16 @@ public class User {
 
     private int userId;
     private String name;
+    private String surname;
     private String password;
     private String photoLink;
+    private int yesNo = 0;
 
-    public User(int userId, String name) {
+    public User(int userId, String name, String surname, String photoLink) {
         this.userId = userId;
         this.name = name;
+        this.surname = surname;
+        this.photoLink = photoLink;
     }
 
     public int getUserId() {
@@ -28,6 +32,15 @@ public class User {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+
     public String getPassword() {
         return password;
     }
@@ -42,5 +55,22 @@ public class User {
 
     public void setPhotoLink(String photoLink) {
         this.photoLink = photoLink;
+    }
+
+    public int getYesNo() {
+        return yesNo;
+    }
+
+    public void setYesNo(int yesNo) {
+        this.yesNo = yesNo;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
     }
 }

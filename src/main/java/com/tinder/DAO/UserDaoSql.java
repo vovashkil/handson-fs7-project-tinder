@@ -26,7 +26,7 @@ public class UserDaoSql implements DAO<User> {
 
                 int userId = resultSet.getInt("userId");
                 String name = resultSet.getString("name");
-                list.add(new User(userId, name));
+//                list.add(new User(userId, name));
 
             }
 
