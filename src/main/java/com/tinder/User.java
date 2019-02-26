@@ -66,6 +66,24 @@ public class User {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userId == user.userId;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        int code = 13;
+        result = result * code + name.hashCode();
+        result = result * code + surname.hashCode();
+        result = result * code + userId;
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +

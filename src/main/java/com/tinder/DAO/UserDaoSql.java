@@ -1,7 +1,9 @@
 package main.java.com.tinder.DAO;
 
+import main.java.com.tinder.Connection.DoConnection;
 import main.java.com.tinder.User;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +12,7 @@ import java.util.List;
 
 public class UserDaoSql implements DAO<User> {
 
+    Connection con = new DoConnection().connection();
     private List<User> list = new ArrayList<>();
 
     @Override

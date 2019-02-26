@@ -1,5 +1,6 @@
 package main.java.com.tinder.Servlets;
 
+import main.java.com.tinder.Service.UserService;
 import main.java.com.tinder.User;
 
 import javax.servlet.ServletException;
@@ -7,56 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UsersServlet extends HttpServlet {
 
-    List<User> users = new ArrayList<>();
-    User user1 = new User(
-            1,
-            "Diego",
-            "Maradona",
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Diego_Maradona_2012_2.jpg/800px-Diego_Maradona_2012_2.jpg"
-    );
-    User user2 = new User(
-            2,
-            "Marco",
-            "van Basten",
-            "https://m.media-amazon.com/images/M/MV5BZjAxYTI3OGMtODM5Ni00M2MxLWFlNmMtYmI4NjIxYTVlODc2XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_SY1000_CR0,0,797,1000_AL_.jpg"
-    );
+    private List<User> users;
+    private User currUser;
 
-    User user3 = new User(
-            3,
-            "Gabriel",
-            "Batistuta",
-            "https://abudhabiblog.com/wp-content/uploads/2015/05/batistuta-argentina-football.jpg"
-    );
-
-    User user4 = new User(
-            4,
-            "Eric",
-            "Cantona",
-            "https://news.images.itv.com/image/file/991160/stream_img.jpg"
-    );
-
-    User user5 = new User(
-            5,
-            "Oleg",
-            "Blokhin",
-            "https://lvironpigs.files.wordpress.com/2011/12/1a1a1a1a1a1a1a283.jpg"
-    );
-
-    public List<User> initList() {
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-        users.add(user4);
-        users.add(user5);
-        return users;
+    public UsersServlet(List<User> users) {
+        this.users = users;
+        this.currUser = users.get(0);
     }
-
-    User currUser = initList().get(0);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
@@ -119,15 +81,15 @@ public class UsersServlet extends HttpServlet {
 
         if (users.indexOf(currUser) + 1 >= users.size()) {
 
-            currUser = users.get(0);
+            resp.setStatus(HttpServletResponse.SC_FOUND);
+            resp.sendRedirect("/liked");
 
         } else {
 
             currUser = users.get(users.indexOf(currUser) + 1);
+            doGet(req, resp);
 
         }
-
-        doGet(req, resp);
 
     }
 }
