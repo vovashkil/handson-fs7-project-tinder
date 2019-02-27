@@ -10,11 +10,13 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import java.sql.Connection;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
-        UserService users = new UserService();
+//        UserService users = new UserService();
+        List<User> users = new UserService().getAll();
 //        initUsersList(users.getUserDao());
 
         Server server = new Server(8080);
@@ -22,8 +24,8 @@ public class App {
         ServletContextHandler handler = new ServletContextHandler();
         server.setHandler(handler);
 
-        handler.addServlet(new ServletHolder(new UsersServlet(users.getAll())), "/users");
-        handler.addServlet(new ServletHolder(new LikedServlet(users.getAll())), "/liked");
+        handler.addServlet(new ServletHolder(new UsersServlet(users)), "/users");
+        handler.addServlet(new ServletHolder(new LikedServlet(users)), "/liked");
 
         server.start();
         server.join();
