@@ -1,8 +1,8 @@
 package com.tinder;
 
+import com.tinder.DAO.DAO;
 import com.tinder.Service.UserService;
-import com.tinder.Servlets.LikedServlet;
-import tinder.Servlets.UsersServlet;
+import com.tinder.Servlets.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;

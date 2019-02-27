@@ -1,9 +1,8 @@
-package tinder.Service;
+package com.tinder.Service;
 
-
-import tinder.DAO.DAO;
-import tinder.DAO.UserDaoSql;
-import tinder.User;
+import com.tinder.DAO.DAO;
+import com.tinder.DAO.UserDaoSql;
+import com.tinder.User;
 
 import java.util.List;
 
@@ -38,6 +37,5 @@ public class UserService {
         userDao.remove(user);
 
     }
-
 
 }

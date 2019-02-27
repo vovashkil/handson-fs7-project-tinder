@@ -1,4 +1,4 @@
-package tinder;
+package com.tinder;
 
 public class User {
 

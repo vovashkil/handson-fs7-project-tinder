@@ -1,7 +1,6 @@
-package tinder.DAO;
+package com.tinder.DAO;
 
-
-import tinder.User;
+import com.tinder.User;
 
 import java.util.ArrayList;
 import java.util.List;

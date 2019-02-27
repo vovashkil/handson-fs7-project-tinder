@@ -1,7 +1,7 @@
-package tinder.DAO;
+package com.tinder.DAO;
 
-import tinder.Connection.DoConnection;
-import tinder.User;
+import com.tinder.Connection.DoConnection;
+import com.tinder.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
