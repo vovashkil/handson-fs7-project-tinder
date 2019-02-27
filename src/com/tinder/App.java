@@ -1,16 +1,21 @@
 package com.tinder;
 
+import com.tinder.Connection.DoConnection;
 import com.tinder.DAO.DAO;
 import com.tinder.Service.UserService;
 import com.tinder.Servlets.*;
+import com.tinder.Utils.FreeMarker;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        FreeMarker template = new FreeMarker("./templates");
+        Connection conn = new DoConnection().connection();
 
 //        UserService users = new UserService();
         List<User> users = new UserService().getAll();
@@ -21,10 +26,13 @@ public class App {
         ServletContextHandler handler = new ServletContextHandler();
         server.setHandler(handler);
 
+        handler.addServlet(AssetsServlet.class, "/assets/*");
+
+        handler.addServlet(new ServletHolder(new LoginServlet(template)), "/login/*");
         handler.addServlet(new ServletHolder(new UsersServlet(users)), "/users");
         handler.addServlet(new ServletHolder(new LikedServlet(users)), "/liked");
         handler.addServlet(new ServletHolder(new MessagesServlet(users)), "/messages/*");
-        handler.addServlet(new ServletHolder(new LoginServlet()), "/login");
+        handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
         server.start();
         server.join();
