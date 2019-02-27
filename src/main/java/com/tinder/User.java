@@ -3,18 +3,30 @@ package main.java.com.tinder;
 public class User {
 
     private int userId;
-    private String name;
-    private String surname;
+    private String login;
+    private String firstName;
+    private String lastName;
     private String password;
     private String photoLink;
     private int yesNo = 0;
 
-    public User(int userId, String name, String surname, String photoLink) {
+    public User(int userId, String login, String firstName, String lastName, String password, String photoLink) {
         this.userId = userId;
-        this.name = name;
-        this.surname = surname;
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
         this.photoLink = photoLink;
     }
+
+    User(String login, String firstName, String lastName, String password, String photoLink) {
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.photoLink = photoLink;
+    }
+
 
     public int getUserId() {
         return userId;
@@ -24,22 +36,29 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String name) {
+        this.login = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getPassword() {
         return password;
@@ -70,15 +89,14 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId;
+        return user.getLogin().equalsIgnoreCase(this.login);
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         int code = 13;
-        result = result * code + name.hashCode();
-        result = result * code + surname.hashCode();
+        result = result * code + login.hashCode();
         result = result * code + userId;
         return result;
     }
@@ -87,8 +105,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", login='" + login + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

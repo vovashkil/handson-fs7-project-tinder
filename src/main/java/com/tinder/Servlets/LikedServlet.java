@@ -12,11 +12,9 @@ import java.util.List;
 public class LikedServlet extends HttpServlet {
 
     private List<User> users;
-    private User currUser;
 
     public LikedServlet(List<User> users) {
         this.users = users;
-        this.currUser = users.get(0);
     }
 
 
@@ -29,9 +27,10 @@ public class LikedServlet extends HttpServlet {
         resp.getWriter().println("<h1>Liked users</h1>");
 
         for (User user : users) {
-            if (user.getYesNo() == 1) {
-                resp.getWriter().printf("<p><span>%s</span><span> %s</span></p>", user.getName(), user.getSurname());
+            if (user.getYesNo() != 1) {
+                resp.getWriter().printf("<p><span>%s</span><span> %s</span></p>", user.getFirstName(), user.getLastName());
                 resp.getWriter().printf("<img src=%s width=200px>", user.getPhotoLink());
+                resp.getWriter().printf("yesNo=%d\n", user.getYesNo());
             }
         }
 

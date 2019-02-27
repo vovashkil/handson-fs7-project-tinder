@@ -27,7 +27,7 @@ public class UsersServlet extends HttpServlet {
         resp.setContentType("text/html");
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.getWriter().println("<h1>Welcome to Tinder/users!</h1>");
-        resp.getWriter().printf("<p><span>%s</span><span> %s</span></p>", currUser.getName(), currUser.getSurname());
+        resp.getWriter().printf("<p><span>%s</span><span> %s</span></p>", currUser.getFirstName(), currUser.getLastName());
         resp.getWriter().printf("<img src=%s width=200px>", currUser.getPhotoLink());
 
         resp.getWriter().println("<form action=\"/users\" method=\"POST\" >");

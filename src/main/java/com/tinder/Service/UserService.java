@@ -3,13 +3,14 @@ package main.java.com.tinder.Service;
 
 import main.java.com.tinder.DAO.DAO;
 import main.java.com.tinder.DAO.UserDaoCollection;
+import main.java.com.tinder.DAO.UserDaoSql;
 import main.java.com.tinder.User;
 
 import java.util.List;
 
 public class UserService {
 
-    private DAO<User> userDao = new UserDaoCollection();
+    private DAO<User> userDao = new UserDaoSql();
 
     public DAO<User> getUserDao() {
         return userDao;
