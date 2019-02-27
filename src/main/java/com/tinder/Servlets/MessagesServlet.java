@@ -1,6 +1,6 @@
-package com.tinder.Servlets;
+package main.java.com.tinder.Servlets;
 
-import com.tinder.User;
+import main.java.com.tinder.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,29 +9,41 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class LikedServlet extends HttpServlet {
+public class MessagesServlet extends HttpServlet {
 
     private List<User> users;
 
-    public LikedServlet(List<User> users) {
+    public MessagesServlet(List<User> users) {
         this.users = users;
     }
 
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-            IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = req.getPathInfo();
+        String[] pathParts = path.split("/");
+        String idString = pathParts[1];
+        int id;
+
+        try {
+
+            id = Integer.parseInt(idString);
+
+        } catch (IllegalArgumentException e) {
+
+            id = -1;
+            System.out.println("Something went wrong: " + e.getMessage());
+
+        }
 
         resp.setContentType("text/html");
         resp.setStatus(HttpServletResponse.SC_OK);
-        resp.getWriter().println("<h1>Liked users</h1>");
+        resp.getWriter().println("<h1>Messages</h1>");
+        resp.getWriter().printf("<p>%s</p>", idString);
 
         for (User user : users) {
-            if (user.getYesNo() == 1) {
-                resp.getWriter().printf("<a href=\"%s\">\n", "/messages/"+ user.getUserId());
+            if (user.getUserId() == id) {
                 resp.getWriter().printf("<p><span>%s</span><span> %s</span></p>", user.getFirstName(), user.getLastName());
                 resp.getWriter().printf("<img src=%s width=200px>", user.getPhotoLink());
-                resp.getWriter().printf("</a>\n");
             }
         }
 

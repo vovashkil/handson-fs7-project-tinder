@@ -26,6 +26,8 @@ public class App {
 
         handler.addServlet(new ServletHolder(new UsersServlet(users)), "/users");
         handler.addServlet(new ServletHolder(new LikedServlet(users)), "/liked");
+        handler.addServlet(new ServletHolder(new MessagesServlet(users)), "/messages/*");
+        handler.addServlet(new ServletHolder(new LoginServlet()), "/login");
 
         server.start();
         server.join();
