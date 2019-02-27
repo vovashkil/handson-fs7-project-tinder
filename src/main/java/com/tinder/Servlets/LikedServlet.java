@@ -1,6 +1,6 @@
-package main.java.com.tinder.Servlets;
+package com.tinder.Servlets;
 
-import main.java.com.tinder.User;
+import com.tinder.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -1,10 +1,10 @@
-package main.java.com.tinder;
+package com.tinder;
 
-import main.java.com.tinder.Connection.DoConnection;
-import main.java.com.tinder.DAO.DAO;
-import main.java.com.tinder.Service.UserService;
-import main.java.com.tinder.Servlets.LikedServlet;
-import main.java.com.tinder.Servlets.UsersServlet;
+import com.tinder.Connection.DoConnection;
+import com.tinder.DAO.DAO;
+import com.tinder.Service.UserService;
+import com.tinder.Servlets.LikedServlet;
+import com.tinder.Servlets.UsersServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;

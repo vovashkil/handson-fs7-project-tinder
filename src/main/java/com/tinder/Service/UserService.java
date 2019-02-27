@@ -1,10 +1,10 @@
-package main.java.com.tinder.Service;
+package com.tinder.Service;
 
 
-import main.java.com.tinder.DAO.DAO;
-import main.java.com.tinder.DAO.UserDaoCollection;
-import main.java.com.tinder.DAO.UserDaoSql;
-import main.java.com.tinder.User;
+import com.tinder.DAO.DAO;
+import com.tinder.DAO.UserDaoCollection;
+import com.tinder.DAO.UserDaoSql;
+import com.tinder.User;
 
 import java.util.List;
 
