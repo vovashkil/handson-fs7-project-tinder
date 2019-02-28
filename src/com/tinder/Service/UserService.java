@@ -10,7 +10,7 @@ public class UserService {
 
     private DAO<User> userDao = new UserDaoSql();
 
-    public DAO<User> getUserDao() {
+    public DAO<User> getDao() {
         return userDao;
     }
 
@@ -20,9 +20,9 @@ public class UserService {
 
     }
 
-    public boolean update(User user) {
+    public boolean update(User item) {
 
-        return userDao.update(user);
+        return userDao.update(item);
 
     }
 
@@ -32,9 +32,9 @@ public class UserService {
 
     }
 
-    public void remove(User user) {
+    public void remove(User item) {
 
-        userDao.remove(user);
+        userDao.remove(item);
 
     }
 

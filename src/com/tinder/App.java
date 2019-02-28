@@ -1,6 +1,5 @@
 package com.tinder;
 
-import com.tinder.Connection.DoConnection;
 import com.tinder.DAO.DAO;
 import com.tinder.Dto.User;
 import com.tinder.Service.UserService;
@@ -10,13 +9,12 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-import java.sql.Connection;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
         FreeMarker template = new FreeMarker("./templates");
-        Connection conn = new DoConnection().connection();
+//        Connection conn = new DoConnection().connection();
 
 //        UserService users = new UserService();
         List<User> users = new UserService().getAll();
