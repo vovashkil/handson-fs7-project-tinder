@@ -2,6 +2,9 @@ package com.tinder;
 
 import com.tinder.DAO.DAO;
 import com.tinder.Dto.User;
+import com.tinder.Filters.FilterServletPostLogin;
+import com.tinder.Filters.FilterServletPostRegister;
+import com.tinder.Filters.LoginFilter;
 import com.tinder.Service.UserService;
 import com.tinder.Servlets.*;
 import com.tinder.Utils.FreeMarker;
@@ -9,6 +12,8 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import javax.servlet.DispatcherType;
+import java.util.EnumSet;
 import java.util.List;
 
 public class App {
@@ -33,6 +38,10 @@ public class App {
         handler.addServlet(new ServletHolder(new MessagesServlet(users)), "/messages/*");
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
+//        handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        handler.addFilter(LoginFilter.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        //handler.addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+
         server.start();
         server.join();
 
@@ -40,14 +49,14 @@ public class App {
 
     private void initUsersList(DAO<User> userDao) {
         User user1 = new User(
-                "diego",
+                "diego@gmail.com",
                 "Diego",
                 "Maradona",
                 "1",
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Diego_Maradona_2012_2.jpg/800px-Diego_Maradona_2012_2.jpg"
         );
         User user2 = new User(
-                "marco",
+                "marco@gmail.com",
                 "Marco",
                 "van Basten",
                 "1",

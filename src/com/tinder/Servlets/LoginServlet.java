@@ -1,7 +1,9 @@
 package com.tinder.Servlets;
 
 import com.sun.net.httpserver.Authenticator;
+import com.tinder.Dto.User;
 import com.tinder.Utils.FreeMarker;
+import com.tinder.Utils.Params;
 import org.eclipse.jetty.server.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginServlet extends HttpServlet {
     private final FreeMarker template;
@@ -35,8 +38,40 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        Map<String, String> messages = new HashMap<String, String>();
+
+        if (username == null || username.isEmpty()) {
+            messages.put("username", "Please enter username");
+        }
+
+        if (password == null || password.isEmpty()) {
+            messages.put("password", "Please enter password");
+        }
+
+//        if (messages.isEmpty()) {
+//            User user = userService.find(username, password);
+//
+//            if (user != null) {
+//                req.getSession().setAttribute("user", user);
+//                resp.sendRedirect(req.getContextPath() + "/users");
+//                return;
+//            } else {
+//                messages.put("login", "Unknown login, please try again");
+//            }
+//        }
+
+//        req.setAttribute("messages", messages);
+//        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+
+
+
+        //security.register("user", "passwd");
+        //System.out.println(req.getParameterMap());
 //        Params p = new Params(req);
-//        log.info(p.toString());
+//        System.out.println(p.toString());
+        //log.info(p.toString());
 //        Authenticator.Result r = wholeProcess.auth(p.get(f_lg), p.get(f_pw));
 //        if (r.success()) {
 //            new Session().loginUser(r.user().getId()).save(resp);
