@@ -2,7 +2,8 @@ package com.tinder.Service;
 
 import com.tinder.DAO.DAO;
 import com.tinder.DAO.LikeDaoSql;
-import com.tinder.Like;
+import com.tinder.Dto.Like;
+
 
 import java.util.List;
 

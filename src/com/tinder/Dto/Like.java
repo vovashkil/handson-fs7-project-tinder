@@ -1,4 +1,4 @@
-package com.tinder;
+package com.tinder.Dto;
 
 import java.time.LocalDateTime;
 

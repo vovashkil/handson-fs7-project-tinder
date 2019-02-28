@@ -1,53 +1,57 @@
 package com.tinder.Dto;
 
-import java.util.Date;
-import java.util.Objects;
+import java.time.LocalDateTime;
 
 public class Message {
-    private int id;
-    private  int from_userid;
-    private int to_useid;
+    private int messageId;
+    private int userIdFrom;
+    private int userIdTo;
     private String message;
-    private Date sendtiime;
+    private LocalDateTime messageTime;
 
-    public Message(int from_userid, int to_useid, String message, Date sendtiime) {
-        this.id = -1;
-        this.from_userid = from_userid;
-        this.to_useid = to_useid;
+    public Message(int userIdFrom, int userIdTo, String message) {
+        this.userIdFrom = userIdFrom;
+        this.userIdTo = userIdTo;
         this.message = message;
-        this.sendtiime = sendtiime;
     }
 
-    public Message(int id, int from_userid, int to_useid, String message, Date sendtiime) {
-        this.id = id;
-        this.from_userid = from_userid;
-        this.to_useid = to_useid;
+    public Message(int userIdFrom, int userIdTo, String message, LocalDateTime messageTime) {
+        this.userIdFrom = userIdFrom;
+        this.userIdTo = userIdTo;
         this.message = message;
-        this.sendtiime = sendtiime;
+        this.messageTime = messageTime;
     }
 
-    public int getId() {
-        return id;
+    public Message(int messageId, int userIdFrom, int userIdTo, String message, LocalDateTime messageTime) {
+        this.messageId = messageId;
+        this.userIdFrom = userIdFrom;
+        this.userIdTo = userIdTo;
+        this.message = message;
+        this.messageTime = messageTime;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getMessageId() {
+        return messageId;
     }
 
-    public int getFrom_userid() {
-        return from_userid;
+    public void setMessageId(int messageId) {
+        this.messageId = messageId;
     }
 
-    public void setFrom_userid(int from_userid) {
-        this.from_userid = from_userid;
+    public int getUserIdFrom() {
+        return userIdFrom;
     }
 
-    public int getTo_useid() {
-        return to_useid;
+    public void setUserIdFrom(int userIdFrom) {
+        this.userIdFrom = userIdFrom;
     }
 
-    public void setTo_useid(int to_useid) {
-        this.to_useid = to_useid;
+    public int getUserIdTo() {
+        return userIdTo;
+    }
+
+    public void setUserIdTo(int userIdTo) {
+        this.userIdTo = userIdTo;
     }
 
     public String getMessage() {
@@ -58,35 +62,22 @@ public class Message {
         this.message = message;
     }
 
-    public Date getSendtiime() {
-        return sendtiime;
+    public LocalDateTime getMessageTime() {
+        return messageTime;
     }
 
-    public void setSendtiime(Date sendtiime) {
-        this.sendtiime = sendtiime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Message message = (Message) o;
-        return getId() == message.getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
+    public void setMessageTime(LocalDateTime messageTime) {
+        this.messageTime = messageTime;
     }
 
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + id +
-                ", from_userid=" + from_userid +
-                ", to_useid=" + to_useid +
+                "messageId=" + messageId +
+                ", userIdFrom=" + userIdFrom +
+                ", userIdTo=" + userIdTo +
                 ", message='" + message + '\'' +
-                ", sendtiime=" + sendtiime +
+                ", messageTime=" + messageTime +
                 '}';
     }
 }

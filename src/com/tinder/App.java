@@ -14,7 +14,7 @@ import java.util.List;
 public class App {
     public static void main(String[] args) throws Exception {
         FreeMarker template = new FreeMarker("./templates");
-//        Connection conn = new DoConnection().connection();
+//        Connection conn = new DbConnection().connection();
 
 //        UserService users = new UserService();
         List<User> users = new UserService().getAll();

@@ -1,6 +1,6 @@
 package com.tinder.DAO;
 
-import com.tinder.User;
+import com.tinder.Dto.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

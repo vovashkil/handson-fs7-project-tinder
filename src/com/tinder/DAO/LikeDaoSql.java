@@ -1,6 +1,6 @@
 package com.tinder.DAO;
 
-import com.tinder.Like;
+import com.tinder.Dto.Like;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

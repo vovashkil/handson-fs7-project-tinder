@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DoConnection {
+public class DbConnection {
 
     private String path = "jdbc:postgresql://tinderdb.c7frhxii8zwb.eu-central-1.rds.amazonaws.com:5432/tinderdb";
     private String username = "tinder";
