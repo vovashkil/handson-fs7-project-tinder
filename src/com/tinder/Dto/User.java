@@ -1,4 +1,4 @@
-package com.tinder;
+package com.tinder.Dto;
 
 public class User {
 
@@ -19,7 +19,7 @@ public class User {
         this.photoLink = photoLink;
     }
 
-    User(String login, String firstName, String lastName, String password, String photoLink) {
+    public User(String login, String firstName, String lastName, String password, String photoLink) {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;

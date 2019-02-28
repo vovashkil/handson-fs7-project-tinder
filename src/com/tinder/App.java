@@ -2,6 +2,7 @@ package com.tinder;
 
 import com.tinder.Connection.DoConnection;
 import com.tinder.DAO.DAO;
+import com.tinder.Dto.User;
 import com.tinder.Service.UserService;
 import com.tinder.Servlets.*;
 import com.tinder.Utils.FreeMarker;
@@ -39,8 +40,7 @@ public class App {
 
     }
 
-    private static void initUsersList(DAO<User> userDao) {
-
+    private void initUsersList(DAO<User> userDao) {
         User user1 = new User(
                 "diego",
                 "Diego",

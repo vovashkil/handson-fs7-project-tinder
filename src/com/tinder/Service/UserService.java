@@ -2,7 +2,7 @@ package com.tinder.Service;
 
 import com.tinder.DAO.DAO;
 import com.tinder.DAO.UserDaoSql;
-import com.tinder.User;
+import com.tinder.Dto.User;
 
 import java.util.List;
 
