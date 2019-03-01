@@ -1,6 +1,7 @@
 package com.tinder.Servlets;
 
 import com.tinder.Dto.User;
+import com.tinder.Utils.WholeProcess;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +11,12 @@ import java.io.IOException;
 import java.util.List;
 
 public class UsersServlet extends HttpServlet {
-
+    private final WholeProcess wholeProcess;
     private List<User> users;
     private User currUser;
 
-    public UsersServlet(List<User> users) {
+    public UsersServlet(WholeProcess wholeProcess, List<User> users) {
+        this.wholeProcess = wholeProcess;
         this.users = users;
         this.currUser = users.get(0);
     }

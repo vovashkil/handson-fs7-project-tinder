@@ -2,6 +2,7 @@ package com.tinder.DAO;
 
 import com.tinder.Dto.Message;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageDaoSql implements DAO<Message> {
+    private final Connection con;
+
+    public MessageDaoSql(Connection con) {
+        this.con = con;
+    }
+
+    @Override
+    public Message get(int id) {
+        return null;
+    }
 
     @Override
     public List<Message> getAll() {

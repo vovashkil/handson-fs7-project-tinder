@@ -9,6 +9,11 @@ public class LikeDaoCollection implements DAO<Like> {
     private List<Like> list = new ArrayList<>();
 
     @Override
+    public Like get(int id) {
+        return null;
+    }
+
+    @Override
     public List<Like> getAll() {
         return null;
     }

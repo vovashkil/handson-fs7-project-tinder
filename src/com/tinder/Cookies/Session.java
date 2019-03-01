@@ -35,6 +35,7 @@ public class Session {
 
     public Session loginUser(final int id) {
         cookies.add(new CookieTimed(Session.COOKIE_UID, String.valueOf(id), Session.HOW_LONG));
+        //System.out.println(new CookieTimed(Session.COOKIE_UID, String.valueOf(id), Session.HOW_LONG));
         return this;
     }
 
@@ -45,5 +46,6 @@ public class Session {
 
     public void save(final HttpServletResponse resp) {
         cookies.spill(resp);
+        //System.out.println(cookies.exists("UID"));///
     }
 }

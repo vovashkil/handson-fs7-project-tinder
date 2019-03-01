@@ -2,6 +2,7 @@ package com.tinder.DAO;
 
 import com.tinder.Dto.User;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoSql implements DAO<User> {
+    private final Connection con;
+
+    public UserDaoSql(Connection con) {
+        this.con = con;
+    }
+
+    @Override
+    public User get(int id) {
+        User result = null;
+        final String sql = "SELECT * FROM users WHERE id = ?";
+        try (PreparedStatement stm = con.prepareStatement(sql)) {
+            stm.setInt(1, id);
+            ResultSet resultSet = stm.executeQuery();
+            while (resultSet.next()) {
+                result = new User(resultSet.getInt("id")
+                        , resultSet.getString("login")
+                        , resultSet.getString("firstname")
+                        , resultSet.getString("lastname")
+                        ,resultSet.getString("password")
+                        ,resultSet.getString("photolink")
+                );
+                break;
+            }
+        } catch (SQLException e) {
+            System.out.printf("Something went wrong: %s\n", e.getMessage());
+        }
+        return result;
+    }
 
     @Override
     public List<User> getAll() {
@@ -130,5 +159,34 @@ public class UserDaoSql implements DAO<User> {
     @Override
     public boolean remove(int index) {
         return false;
+    }
+
+    public List<User> getByLogin(final String name) {
+        return getByLogin(name, false);
+    }
+
+    public List<User> getByLogin(final String name, boolean strict) {
+        ArrayList<User> users = new ArrayList<>();
+
+        String sql = "SELECT * FROM users WHERE UPPER(login) LIKE UPPER(?)";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, strict ? name : "%" + name + "%");
+            ResultSet r = stmt.executeQuery();
+            while (r.next()) {
+                users.add(new User(
+                        r.getInt("id"),
+                        r.getString("login"),
+                        r.getString("firstname"),
+                        r.getString("lastname"),
+                        r.getString("password"),
+                        r.getString("photolink")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 }

@@ -10,6 +10,11 @@ public class MessageDaoCollection implements DAO<Message> {
     private List<Message> list = new ArrayList<>();
 
     @Override
+    public Message get(int id) {
+        return null;
+    }
+
+    @Override
     public List<Message> getAll() {
         return null;
     }

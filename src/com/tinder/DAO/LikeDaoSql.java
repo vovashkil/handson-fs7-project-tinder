@@ -2,6 +2,7 @@ package com.tinder.DAO;
 
 import com.tinder.Dto.Like;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LikeDaoSql implements DAO<Like>{
+    private final Connection con;
+
+    public LikeDaoSql(Connection con) {
+        this.con = con;
+    }
+
+    @Override
+    public Like get(int id) {
+        return null;
+    }
 
     @Override
     public List<Like> getAll() {

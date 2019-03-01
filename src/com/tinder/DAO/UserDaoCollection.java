@@ -10,6 +10,11 @@ public class UserDaoCollection implements DAO<User> {
     private List<User> list = new ArrayList<>();
 
     @Override
+    public User get(int id) {
+        return null;
+    }
+
+    @Override
     public List<User> getAll() {
 
         return list;
@@ -55,5 +60,8 @@ public class UserDaoCollection implements DAO<User> {
             return false;
 
         }
+    }
+    public List<User> getByLogin(final String name, boolean strict){
+        return  new ArrayList<>();
     }
 }

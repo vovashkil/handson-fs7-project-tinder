@@ -1,5 +1,6 @@
 package com.tinder;
 
+import com.tinder.Connection.DbConnection;
 import com.tinder.DAO.DAO;
 import com.tinder.Dto.User;
 import com.tinder.Filters.FilterServletPostLogin;
@@ -8,21 +9,25 @@ import com.tinder.Filters.LoginFilter;
 import com.tinder.Service.UserService;
 import com.tinder.Servlets.*;
 import com.tinder.Utils.FreeMarker;
+import com.tinder.Utils.Persistence;
+import com.tinder.Utils.WholeProcess;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
+import java.sql.Connection;
 import java.util.EnumSet;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
         FreeMarker template = new FreeMarker("./templates");
-//        Connection conn = new DbConnection().connection();
+        WholeProcess wholeProcess = new WholeProcess(new Persistence());
 
-//        UserService users = new UserService();
-        List<User> users = new UserService().getAll();
+        Connection conn = new DbConnection().connection();//delete
+        //UserService users = new UserService(conn);//delete
+        List<User> users = new UserService(conn).getAll();
 //        initUsersList(users.getUserDao());
 
         Server server = new Server(8080);
@@ -32,14 +37,14 @@ public class App {
 
         handler.addServlet(AssetsServlet.class, "/assets/*");
 
-        handler.addServlet(new ServletHolder(new LoginServlet(template)), "/login/*");
-        handler.addServlet(new ServletHolder(new UsersServlet(users)), "/users");
+        handler.addServlet(new ServletHolder(new LoginServlet(wholeProcess, template)), "/login/*");
+        handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, users)), "/users");
         handler.addServlet(new ServletHolder(new LikedServlet(users)), "/liked");
         handler.addServlet(new ServletHolder(new MessagesServlet(users)), "/messages/*");
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
 //        handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
-        handler.addFilter(LoginFilter.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+       // handler.addFilter(LoginFilter.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
         //handler.addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
         server.start();
