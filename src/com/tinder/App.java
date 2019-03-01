@@ -3,9 +3,6 @@ package com.tinder;
 import com.tinder.Connection.DbConnection;
 import com.tinder.DAO.DAO;
 import com.tinder.Dto.User;
-import com.tinder.Filters.FilterServletPostLogin;
-import com.tinder.Filters.FilterServletPostRegister;
-import com.tinder.Filters.LoginFilter;
 import com.tinder.Service.UserService;
 import com.tinder.Servlets.*;
 import com.tinder.Utils.FreeMarker;
@@ -15,9 +12,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-import javax.servlet.DispatcherType;
 import java.sql.Connection;
-import java.util.EnumSet;
 import java.util.List;
 
 public class App {
@@ -44,7 +39,6 @@ public class App {
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
 //        handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
-       // handler.addFilter(LoginFilter.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
         //handler.addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
         //addFilter(FilterServletAnybodyLogged.class, "/test", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
