@@ -46,6 +46,7 @@ public class App {
 //        handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
        // handler.addFilter(LoginFilter.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
         //handler.addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        //addFilter(FilterServletAnybodyLogged.class, "/test", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
         server.start();
         server.join();

@@ -10,6 +10,9 @@ public class User {
     private String photoLink;
     private int yesNo = 0;
 
+    public User() {
+    }
+
     public User(int userId, String login, String firstName, String lastName, String password, String photoLink) {
         this.userId = userId;
         this.login = login;
