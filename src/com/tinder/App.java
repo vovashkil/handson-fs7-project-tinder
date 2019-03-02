@@ -34,7 +34,7 @@ public class App {
 
         handler.addServlet(new ServletHolder(new LoginServlet(wholeProcess, template)), "/login/*");
         handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, users)), "/users");
-        handler.addServlet(new ServletHolder(new LikedServlet(users)), "/liked");
+        handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template, users)), "/liked");
         handler.addServlet(new ServletHolder(new MessagesServlet(users)), "/messages/*");
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
