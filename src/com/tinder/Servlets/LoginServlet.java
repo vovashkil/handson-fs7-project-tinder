@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,19 +37,13 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
-
         Params p = new Params(req);
-        writer.println(p.toString());//
+
         log.info(p.toString());
         Authenticator.Result r = wholeProcess.auth(p.get(f_lg), p.get(f_pw));
-       // writer.println(r.message());//
         if (r.success()) {
-            writer.println(r.user().getUserId());
             new Session().loginUser(r.user().getUserId()).save(resp);
-            //writer.println("who logged: " + session.whoLogged());
-            //writer.println("Anybody logged: " + (new Session(req)).isAnybodyLogged());
-            //resp.sendRedirect("/users");
+            resp.sendRedirect("/users");
         }
 
 //        HashMap<String, Object> data = new HashMap<>();

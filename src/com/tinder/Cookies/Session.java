@@ -1,8 +1,12 @@
 package com.tinder.Cookies;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class Session {
     private static final String COOKIE_UID = "UID";
@@ -14,11 +18,12 @@ public class Session {
     }
 
     public Session(final HttpServletRequest req) {
-        this(new CookiesEncrypted(req));
+//        this(new CookiesEncrypted(req));
+        this(new CookiesStandard(req));
     }
 
     public Session() {
-        this(new CookiesEncrypted());
+        this(new CookiesStandard());
     }
 
     public Session(final Cookies ck) {
@@ -34,6 +39,8 @@ public class Session {
     }
 
     public Session loginUser(final int id) {
+        System.out.println("loginUser");
+
         cookies.add(new CookieTimed(Session.COOKIE_UID, String.valueOf(id), Session.HOW_LONG));
         //System.out.println(new CookieTimed(Session.COOKIE_UID, String.valueOf(id), Session.HOW_LONG));
         return this;

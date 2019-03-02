@@ -51,6 +51,7 @@ public class User {
         return firstName;
     }
 
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -86,6 +87,7 @@ public class User {
     public void setYesNo(int yesNo) {
         this.yesNo = yesNo;
     }
+
 
     @Override
     public boolean equals(Object o) {
