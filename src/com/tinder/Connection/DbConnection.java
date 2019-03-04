@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class DbConnection {
 
-//    private String path = "jdbc:postgresql://tinderdb.c7frhxii8zwb.eu-central-1.rds.amazonaws.com:5432/tinderdb";
     private String path = "jdbc:postgresql://tinderdb.cmzzf2pfpgom.eu-central-1.rds.amazonaws.com:5432/tinderdb";
     private String username = "tinder";
     private String password = "Tinder!234";

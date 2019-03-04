@@ -2,9 +2,11 @@ package com.tinder;
 
 import com.tinder.Connection.DbConnection;
 import com.tinder.DAO.DAO;
+import com.tinder.Dto.Message;
 import com.tinder.Dto.User;
 import com.tinder.Filters.FilterServletAnybodyLogged;
 import com.tinder.Filters.FilterServletPostLogin;
+import com.tinder.Service.MessageService;
 import com.tinder.Service.UserService;
 import com.tinder.Servlets.*;
 import com.tinder.Utils.FreeMarker;
@@ -27,6 +29,7 @@ public class App {
         Connection conn = new DbConnection().connection();//delete
         //UserService users = new UserService(conn);//delete
         List<User> users = new UserService(conn).getAll();
+        MessageService messages = new MessageService(conn);
 //        initUsersList(users.getUserDao());
 
         Server server = new Server(8080);
@@ -39,7 +42,7 @@ public class App {
         handler.addServlet(new ServletHolder(new LoginServlet(wholeProcess, template)), "/login/*");
         handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, users)), "/users");
         handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template, users)), "/liked");
-        handler.addServlet(new ServletHolder(new MessagesServlet(users)), "/messages/*");
+        handler.addServlet(new ServletHolder(new MessagesServlet(wholeProcess, template, messages)), "/messages/*");
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
 //        handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
