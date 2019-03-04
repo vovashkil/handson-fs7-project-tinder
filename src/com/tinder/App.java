@@ -43,7 +43,7 @@ public class App {
         handler.addServlet(new ServletHolder(new RegisterServlet(wholeProcess, template)), "/register/*");
         handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, users)), "/users");
         handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template, users)), "/liked");
-        handler.addServlet(new ServletHolder(new MessagesServlet(wholeProcess, template, messages)), "/messages/*");
+        handler.addServlet(new ServletHolder(new MessagesServlet(wholeProcess, template)), "/messages/*");
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
 //        handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));

@@ -5,6 +5,7 @@ import com.tinder.DAO.MessageDaoSql;
 import com.tinder.Dto.Message;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageService {
@@ -32,5 +33,13 @@ public class MessageService {
 
     public void remove(Message item) {
         messageDao.remove(item);
+    }
+
+    public List<Message> getMessagesBetweenUser(int self, int userid) {
+        if (messageDao instanceof MessageDaoSql) {
+            return ((MessageDaoSql) messageDao).getMessagesBetweenUser(self, userid);
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

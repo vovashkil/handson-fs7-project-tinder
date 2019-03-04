@@ -88,6 +88,10 @@ public class User {
         this.yesNo = yesNo;
     }
 
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
+
 
     @Override
     public boolean equals(Object o) {

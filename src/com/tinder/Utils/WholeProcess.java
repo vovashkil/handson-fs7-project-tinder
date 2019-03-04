@@ -15,7 +15,11 @@ public class WholeProcess {
         return (User) persistence.getUserService().getDao().get(id);
     }
 
-//    @Override
+    public Persistence getPersistence() {
+        return persistence;
+    }
+
+    //    @Override
 //    public String toString() {
 //        return String.format("Users in memory:%s", storage.keySet());
 //    }

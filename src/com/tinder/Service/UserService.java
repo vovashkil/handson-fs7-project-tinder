@@ -23,6 +23,8 @@ public class UserService {
         return userDao.getAll();
     }
 
+    public User get(int index) {return userDao.get(index);}
+
     public boolean update(User item) {
         return userDao.update(item);
     }
