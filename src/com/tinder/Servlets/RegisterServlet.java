@@ -1,6 +1,5 @@
 package com.tinder.Servlets;
 
-import com.tinder.Cookies.Session;
 import com.tinder.Utils.Authenticator;
 import com.tinder.Utils.FreeMarker;
 import com.tinder.Utils.Params;
@@ -9,48 +8,41 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-public class LoginServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
     private final WholeProcess wholeProcess;
     private final FreeMarker template;
 
     public static final String f_pw = "password";
     public static final String f_lg = "login";
+    public static final String f_fn = "firstname";
+    public static final String f_ln = "lastname";
+    public static final String f_ph = "photolink";
 
-    static Logger log = LoggerFactory.getLogger(LoginServlet.class);
+    static Logger log = LoggerFactory.getLogger(RegisterServlet.class);
 
-    public LoginServlet(WholeProcess wholeProcess, FreeMarker template) {
+    public RegisterServlet(WholeProcess wholeProcess, FreeMarker template) {
         this.wholeProcess = wholeProcess;
         this.template = template;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        template.render("login.html", resp);
+        template.render("register.html", resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Params p = new Params(req);
-
         log.info(p.toString());
-        Authenticator.Result r = wholeProcess.auth(p.get(f_lg), p.get(f_pw));
-        if (r.success()) {
-            new Session().loginUser(r.user().getUserId()).save(resp);
-            resp.sendRedirect("/users");
-        } else {
-            doGet(req, resp);
-        }
-
+//        Authenticator.Result r = wholeProcess.register(p.get(f_lg), p.get(f_p1), p.get(f_p2), p.get(f_nm), p.get(f_gr));
 //        HashMap<String, Object> data = new HashMap<>();
-//        data.put("user", r.user());
+//        data.put("name", p.get(f_lg));
 //        data.put("message", r.message());
-//        template.render(r.success() ? "login-ok.html" : "login-err.html", data, resp);
+//        template.render(r.success() ? "register-ok.html" : "register-err.html", data, resp);
     }
 }

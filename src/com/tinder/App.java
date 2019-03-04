@@ -40,6 +40,7 @@ public class App {
         handler.addServlet(AssetsServlet.class, "/assets/*");
 
         handler.addServlet(new ServletHolder(new LoginServlet(wholeProcess, template)), "/login/*");
+        handler.addServlet(new ServletHolder(new RegisterServlet(wholeProcess, template)), "/register/*");
         handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, users)), "/users");
         handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template, users)), "/liked");
         handler.addServlet(new ServletHolder(new MessagesServlet(wholeProcess, template, messages)), "/messages/*");
