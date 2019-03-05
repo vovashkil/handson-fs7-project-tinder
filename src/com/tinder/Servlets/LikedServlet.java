@@ -18,25 +18,28 @@ public class LikedServlet extends HttpServlet {
     private final WholeProcess wholeProcess;
     private final FreeMarker template;
 
-    private List<User> users;
+    int userLoggedId = 0;
 
-    public LikedServlet(WholeProcess wholeProcess, FreeMarker template, List<User> users) {
+    public LikedServlet(WholeProcess wholeProcess, FreeMarker template) {
         this.wholeProcess = wholeProcess;
         this.template = template;
-        this.users = users;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
             IOException {
         HashMap<String, Object> data = new HashMap<>();
-        
+
         Session session = new Session(req);
         if (session.isAnybodyLogged()) {
-            data.put("loginUserId", session.whoLogged());
-        } else data.put("loginUserId", "UnLogged");
+            userLoggedId = session.whoLogged();
+            data.put("loginUserId", userLoggedId);
+        } else {
+            userLoggedId = -1;
+            data.put("loginUserId", -1);
+        }
 
-        data.put("likedlist", users.toArray());
+        data.put("likedlist", wholeProcess.getPersistence().getLikeService().getUsersLiked(userLoggedId).toArray());
 
         template.render("people-list.html", data, resp);
     }

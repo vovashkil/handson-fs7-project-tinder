@@ -26,10 +26,10 @@ public class App {
         FreeMarker template = new FreeMarker("./templates");
         WholeProcess wholeProcess = new WholeProcess(new Persistence());
 
-        Connection conn = new DbConnection().connection();//delete
+        //Connection conn = new DbConnection().connection();//delete
         //UserService users = new UserService(conn);//delete
-        List<User> users = new UserService(conn).getAll();
-        MessageService messages = new MessageService(conn);
+        //List<User> users = new UserService(conn).getAll();
+        //MessageService messages = new MessageService(conn);
 //        initUsersList(users.getUserDao());
 
         Server server = new Server(8080);
@@ -41,8 +41,8 @@ public class App {
 
         handler.addServlet(new ServletHolder(new LoginServlet(wholeProcess, template)), "/login/*");
         handler.addServlet(new ServletHolder(new RegisterServlet(wholeProcess, template)), "/register/*");
-        handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, users)), "/users");
-        handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template, users)), "/liked");
+        handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, template)), "/users");
+        handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template)), "/liked");
         handler.addServlet(new ServletHolder(new MessagesServlet(wholeProcess, template)), "/messages/*");
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 

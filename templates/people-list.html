@@ -41,9 +41,9 @@
                             <#list likedlist as item2>
                             <tr class="clickable-row" data-href="messages/${item2.userId}">
                                 <td width="10">
-                                    <h1>${item2.firstName}</h1>
+                                    <!--<h1>${item2.getFullName()}</h1>-->
                                     <div class="avatar-img">
-                                        <img class="img-thumbnail" src=${item2.photoLink}>  
+                                        <img class="img-circle" src=${item2.photoLink}>  
                                     </div>
                                 </td>
                                 <td class="align-middle">
