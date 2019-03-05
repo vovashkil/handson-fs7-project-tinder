@@ -7,6 +7,8 @@ import com.tinder.Dto.User;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class UserService {
     private final DAO<User> userDao;
@@ -43,5 +45,12 @@ public class UserService {
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public List<User> getAllForLiked(int userid){
+        return userDao.getAll()
+                .stream()
+                .filter(user -> (user.getUserId() != userid))
+                .collect(Collectors.toList());
     }
 }

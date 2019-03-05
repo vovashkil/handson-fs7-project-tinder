@@ -38,8 +38,8 @@ public class LikedServlet extends HttpServlet {
             userLoggedId = -1;
             data.put("loginUserId", -1);
         }
-
-        data.put("likedlist", wholeProcess.getPersistence().getLikeService().getUsersLiked(userLoggedId).toArray());
+        List<User> users = wholeProcess.getPersistence().getLikeService().getUsersLiked(userLoggedId);
+        data.put("likedlist", users.toArray());
 
         template.render("people-list.html", data, resp);
     }

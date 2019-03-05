@@ -18,8 +18,9 @@ public class UsersServlet extends HttpServlet {
     private final FreeMarker template;
 
     int userLoggedId = -1;
-//    private List<User> users;
-//    private User currUser;
+
+    private List<User> users;
+    private User currUser;
 
 //    public UsersServlet(WholeProcess wholeProcess, List<User> users) {
 //        this.wholeProcess = wholeProcess;
@@ -45,7 +46,24 @@ public class UsersServlet extends HttpServlet {
             userLoggedId = -1;
         }
 
-        data.put("loginUser", wholeProcess.getPersistence().getUserService().get(userLoggedId));
+        data.put("loginUser", wholeProcess.user(userLoggedId));
+
+        if (users != null && users.size() != 0) {
+            users.remove(currUser);
+        }
+        if (users == null ) {
+            users = wholeProcess.getPersistence().getUserService().getAllForLiked(userLoggedId);
+        }
+        if (users .size() == 0) {
+            users = wholeProcess.getPersistence().getUserService().getAllForLiked(userLoggedId);
+        }
+        if (users.size() != 0) {
+            currUser = users.get(0);
+        }
+
+        if (currUser != null) {
+            data.put("likedUser", currUser);
+        }
 
         template.render("like-page.html", data, resp);
 //
@@ -111,10 +129,41 @@ public class UsersServlet extends HttpServlet {
 //
 //        } else {
 //
-//            currUser = users.get(users.indexOf(currUser) + 1);
-//            doGet(req, resp);
+            //currUser = users.get(users.indexOf(currUser) + 1);
+            doGet(req, resp);
 //
 //        }
 
     }
 }
+/*
+*
+1
+2
+3
+4
+5
+<form method="post">
+ <input type="button" name="button_a_clicked" value="ButtonA" />
+ <input type="button" name="button_b_clicked" value="ButtonB" />
+ <input type="button" name="button_c_clicked" value="ButtonC" />
+</form>
+
+
+Then in the servlet.
+
+?
+1
+2
+3
+4
+5
+6
+if(null != request.getParameter("button_a_clicked"))
+  // do 'A' stuff
+else if(null != request.getParameter("button_b_clicked"))
+  // do 'B' stuff
+else if(null != request.getParameter("button_c_clicked"))
+  // do 'C' stuff
+*
+* */
