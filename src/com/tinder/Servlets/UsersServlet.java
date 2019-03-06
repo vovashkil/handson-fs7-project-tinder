@@ -1,6 +1,7 @@
 package com.tinder.Servlets;
 
 import com.tinder.Cookies.Session;
+import com.tinder.Dto.Like;
 import com.tinder.Dto.User;
 import com.tinder.Utils.FreeMarker;
 import com.tinder.Utils.WholeProcess;
@@ -99,10 +100,32 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Session session = new Session(req);
+        if (session.isAnybodyLogged()) {
+            userLoggedId = session.whoLogged();
+        } else {
+            userLoggedId = -1;
+        }
+
         if (null != req.getParameter("like")) {
             currUser.setYesNo(1);
+            if (userLoggedId != -1) {
+                wholeProcess.getPersistence().getLikeService().update(new Like(
+                        userLoggedId,
+                        currUser.getUserId(),
+                        true
+                ));
+            }
         } else if (null != req.getParameter("dislike")) {
             currUser.setYesNo(2);
+            if (userLoggedId != -1) {
+                wholeProcess.getPersistence().getLikeService().update(new Like(
+                        userLoggedId,
+                        currUser.getUserId(),
+                        false
+                ));
+            }
         } else {
             currUser.setYesNo(0);
         }

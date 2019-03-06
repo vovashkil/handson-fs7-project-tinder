@@ -59,15 +59,40 @@ public class LikeDaoSql implements DAO<Like> {
 
         boolean result = false;
 
-        try {
+        StringBuilder sb = new StringBuilder();
+        final String sql =
+                sb.append("SELECT * FROM likedlist WHERE userid=\'")
+                        .append(item.getUserId())
+                        .append("\'")
+                        .append(" AND marked_userid=\'")
+                        .append(item.getUserIdMarked())
+                        .append("\'")
+                        .toString();
 
-            String insertQuery = "INSERT INTO likedlist (userid, marked_userid, islike) VALUES(?,?,?)";
-            PreparedStatement ps = con.prepareStatement(insertQuery);
-            ps.setInt(1, item.getUserId());
-            ps.setInt(2, item.getUserIdMarked());
-            ps.setBoolean(3, true);
-            ps.executeUpdate();
-            ps.close();
+        try (
+                PreparedStatement stm = con.prepareStatement(sql);
+                ResultSet resultSet = stm.executeQuery();
+
+        ) {
+            if (!resultSet.next()) {
+                String insertQuery = "INSERT INTO likedlist (userid, marked_userid, islike) VALUES(?,?,?)";
+                PreparedStatement ps = con.prepareStatement(insertQuery);
+                ps.setInt(1, item.getUserId());
+                ps.setInt(2, item.getUserIdMarked());
+                ps.setBoolean(3, item.isLike());
+                ps.executeUpdate();
+                ps.close();
+
+
+            } else {
+                String updateQuery = "UPDATE likedlist SET islike=? WHERE userid='"
+                        + item.getUserId() + "' AND marked_userid='" + item.getUserIdMarked() + "'";
+                PreparedStatement ps = con.prepareStatement(updateQuery);
+                ps.setBoolean(1, item.isLike());
+                ps.executeUpdate();
+                ps.close();
+
+            }
 
             result = true;
 
