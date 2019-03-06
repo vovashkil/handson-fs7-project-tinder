@@ -48,16 +48,8 @@ public class UsersServlet extends HttpServlet {
 
         data.put("loginUser", wholeProcess.user(userLoggedId));
 
-        if (users != null && users.size() != 0) {
-            users.remove(currUser);
-        }
-        if (users == null ) {
+        if (users == null) {
             users = wholeProcess.getPersistence().getUserService().getAllForLiked(userLoggedId);
-        }
-        if (users .size() == 0) {
-            users = wholeProcess.getPersistence().getUserService().getAllForLiked(userLoggedId);
-        }
-        if (users.size() != 0) {
             currUser = users.get(0);
         }
 
@@ -107,6 +99,13 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (null != req.getParameter("like")) {
+            currUser.setYesNo(1);
+        } else if (null != req.getParameter("dislike")) {
+            currUser.setYesNo(2);
+        } else {
+            currUser.setYesNo(0);
+        }
 //        String yesNo = req.getParameter("yes_no");
 //        if ("yes".equalsIgnoreCase(yesNo)) {
 //
@@ -122,48 +121,12 @@ public class UsersServlet extends HttpServlet {
 //
 //        }
 //
-//        if (users.indexOf(currUser) + 1 >= users.size()) {
-//
-//            resp.setStatus(HttpServletResponse.SC_FOUND);
-//            resp.sendRedirect("/liked");
-//
-//        } else {
-//
-            //currUser = users.get(users.indexOf(currUser) + 1);
+        if (users.indexOf(currUser) + 1 >= users.size()) {
+            resp.setStatus(HttpServletResponse.SC_FOUND);
+            resp.sendRedirect("/liked");
+        } else {
+            currUser = users.get(users.indexOf(currUser) + 1);
             doGet(req, resp);
-//
-//        }
-
+        }
     }
 }
-/*
-*
-1
-2
-3
-4
-5
-<form method="post">
- <input type="button" name="button_a_clicked" value="ButtonA" />
- <input type="button" name="button_b_clicked" value="ButtonB" />
- <input type="button" name="button_c_clicked" value="ButtonC" />
-</form>
-
-
-Then in the servlet.
-
-?
-1
-2
-3
-4
-5
-6
-if(null != request.getParameter("button_a_clicked"))
-  // do 'A' stuff
-else if(null != request.getParameter("button_b_clicked"))
-  // do 'B' stuff
-else if(null != request.getParameter("button_c_clicked"))
-  // do 'C' stuff
-*
-* */

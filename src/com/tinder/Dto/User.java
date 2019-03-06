@@ -110,6 +110,16 @@ public class User {
         return result;
     }
 
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId=" + userId +
+//                ", login='" + login + '\'' +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                '}';
+//    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -117,6 +127,9 @@ public class User {
                 ", login='" + login + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", photoLink='" + photoLink + '\'' +
+                ", yesNo=" + yesNo +
                 '}';
     }
 }
