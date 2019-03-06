@@ -2,10 +2,7 @@ package com.tinder.DAO;
 
 import com.tinder.Dto.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +25,8 @@ public class UserDaoSql implements DAO<User> {
                         , resultSet.getString("login")
                         , resultSet.getString("firstname")
                         , resultSet.getString("lastname")
-                        ,resultSet.getString("password")
-                        ,resultSet.getString("photolink")
+                        , resultSet.getString("password")
+                        , resultSet.getString("photolink")
                 );
                 break;
             }
@@ -72,6 +69,41 @@ public class UserDaoSql implements DAO<User> {
     }
 
     @Override
+    public User insert(User item) {
+        String insertQuery = "INSERT INTO users (login, firstname, lastname, password, photolink) VALUES(?,?,?,?,?)";
+        System.out.println("set sql statment");///////////////////////////
+        try (
+                PreparedStatement ps = con.prepareStatement(insertQuery,
+                        Statement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, item.getLogin());
+            ps.setString(2, item.getFirstName());
+            ps.setString(3, item.getLastName());
+            ps.setString(4, item.getPassword());
+            ps.setString(5, item.getPhotoLink());
+            System.out.println("after set params");////////////////
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setUserId((int)generatedKeys.getLong(1));
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.printf("Something went wrong: %s\n", e.getMessage());
+        }
+        return item;
+    }
+
+    @Override
     public boolean update(User user) {
 
         boolean result = false;
@@ -82,11 +114,9 @@ public class UserDaoSql implements DAO<User> {
                         .append(user.getLogin())
                         .append("\'")
                         .toString();
-
         try (
                 PreparedStatement stm = con.prepareStatement(sql);
                 ResultSet resultSet = stm.executeQuery();
-
         ) {
 
             if (!resultSet.next()) {

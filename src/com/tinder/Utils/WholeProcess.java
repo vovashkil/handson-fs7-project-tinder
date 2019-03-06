@@ -19,16 +19,12 @@ public class WholeProcess {
         return persistence;
     }
 
-    //    @Override
-//    public String toString() {
-//        return String.format("Users in memory:%s", storage.keySet());
-//    }
-
     public Authenticator.Result auth(String login, String passwd) {
         return this.authenticator.auth(login, passwd);
     }
-//    public Authenticator.Result register(String login, String pwd1, String pwd2, String name, String group) {
-//        return authenticator.register(login, pwd1, pwd2, name, Integer.parseInt(group));
-//    }
 
+    public Authenticator.Result register(String login, String pwd, String firstname, String lastname, String photolink) {
+        System.out.println("authenticator");
+        return authenticator.register(login, pwd, firstname, lastname, photolink);
+    }
 }

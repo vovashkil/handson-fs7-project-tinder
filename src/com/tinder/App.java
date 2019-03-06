@@ -26,12 +26,6 @@ public class App {
         FreeMarker template = new FreeMarker("./templates");
         WholeProcess wholeProcess = new WholeProcess(new Persistence());
 
-        //Connection conn = new DbConnection().connection();//delete
-        //UserService users = new UserService(conn);//delete
-        //List<User> users = new UserService(conn).getAll();
-        //MessageService messages = new MessageService(conn);
-//        initUsersList(users.getUserDao());
-
         Server server = new Server(8080);
 
         ServletContextHandler handler = new ServletContextHandler();

@@ -55,6 +55,11 @@ public class LikeDaoSql implements DAO<Like> {
     }
 
     @Override
+    public Like insert(Like item) {
+        return null;
+    }
+
+    @Override
     public boolean update(Like item) {
 
         boolean result = false;

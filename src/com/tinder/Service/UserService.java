@@ -27,6 +27,8 @@ public class UserService {
 
     public User get(int index) {return userDao.get(index);}
 
+    public User insert(User item){return userDao.insert(item);}
+
     public boolean update(User item) {
         return userDao.update(item);
     }

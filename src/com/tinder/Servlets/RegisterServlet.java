@@ -39,10 +39,10 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Params p = new Params(req);
         log.info(p.toString());
-//        Authenticator.Result r = wholeProcess.register(p.get(f_lg), p.get(f_p1), p.get(f_p2), p.get(f_nm), p.get(f_gr));
-//        HashMap<String, Object> data = new HashMap<>();
-//        data.put("name", p.get(f_lg));
-//        data.put("message", r.message());
-//        template.render(r.success() ? "register-ok.html" : "register-err.html", data, resp);
+
+        Authenticator.Result r = wholeProcess.register(p.get(f_lg), p.get(f_pw), p.get(f_fn), p.get(f_ln), p.get(f_ph));
+        if (r.success() ) {
+            resp.sendRedirect("/login");
+        }
     }
 }
