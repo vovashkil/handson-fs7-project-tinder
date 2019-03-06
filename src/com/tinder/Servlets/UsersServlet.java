@@ -1,6 +1,7 @@
 package com.tinder.Servlets;
 
 import com.tinder.Cookies.Session;
+import com.tinder.Dto.Like;
 import com.tinder.Dto.User;
 import com.tinder.Utils.FreeMarker;
 import com.tinder.Utils.WholeProcess;
@@ -22,12 +23,6 @@ public class UsersServlet extends HttpServlet {
     private List<User> users;
     private User currUser;
 
-//    public UsersServlet(WholeProcess wholeProcess, List<User> users) {
-//        this.wholeProcess = wholeProcess;
-//        this.users = users;
-//        this.currUser = users.get(0);
-//    }
-
     public UsersServlet(WholeProcess wholeProcess, FreeMarker template) {
         this.wholeProcess = wholeProcess;
         this.template = template;
@@ -42,89 +37,56 @@ public class UsersServlet extends HttpServlet {
         Session session = new Session(req);
         if (session.isAnybodyLogged()) {
             userLoggedId = session.whoLogged();
+            data.put("loginUser", wholeProcess.user(userLoggedId));
+            data.put("IsAnybodyLogged", session.isAnybodyLogged());
+
+            if (users == null) {
+                users = wholeProcess.getPersistence().getUserService().getAllForLiked(userLoggedId);
+                currUser = users.get(0);
+            }
+
+            if (currUser != null) {
+                data.put("likedUser", currUser);
+            }
+            template.render("like-page.html", data, resp);
         } else {
             userLoggedId = -1;
+            resp.sendRedirect("/login");
         }
-
-        data.put("loginUser", wholeProcess.user(userLoggedId));
-
-        if (users == null) {
-            users = wholeProcess.getPersistence().getUserService().getAllForLiked(userLoggedId);
-            currUser = users.get(0);
-        }
-
-        if (currUser != null) {
-            data.put("likedUser", currUser);
-        }
-
-        template.render("like-page.html", data, resp);
-//
-//        resp.setContentType("text/html");
-//        resp.setStatus(HttpServletResponse.SC_OK);
-//        resp.getWriter().println("<h1>Welcome to Tinder/users!</h1>");
-//        resp.getWriter().printf("<p><span>%s</span><span> %s</span></p>", currUser.getFirstName(), currUser.getLastName());
-//        resp.getWriter().printf("<img src=%s width=200px>", currUser.getPhotoLink());
-//
-//        resp.getWriter().println("<form action=\"/users\" method=\"POST\" >");
-//
-//        String checkedYes = "", checkedNo = "";
-//
-//        if (currUser.getYesNo() == 1) {
-//
-//            checkedYes = "checked";
-//
-//        } else if (currUser.getYesNo() == 2) {
-//
-//            checkedNo = "checked";
-//
-//        }
-//
-//        String radioYes = "<input type=\"radio\"" +
-//                "name=\"yes_no\"" +
-//                " onclick=this.form.submit() " +
-//                "value=\"yes\" " + checkedYes +
-//                " >Yes</input>";
-//        resp.getWriter().println(radioYes);
-//
-//        String radioNo = "<input type=\"radio\"" +
-//                "name=\"yes_no\"" +
-//                " onclick=this.form.submit() " +
-//                "value=\"no\" " + checkedNo +
-//                " >No</input>";
-//        resp.getWriter().println(radioNo);
-//
-//        resp.getWriter().println("</form>");
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Session session = new Session(req);
+        if (session.isAnybodyLogged()) {
+            userLoggedId = session.whoLogged();
+        } else {
+            userLoggedId = -1;
+        }
+
         if (null != req.getParameter("like")) {
             currUser.setYesNo(1);
+            if (userLoggedId != -1) {
+                wholeProcess.getPersistence().getLikeService().update(new Like(
+                        userLoggedId,
+                        currUser.getUserId(),
+                        true
+                ));
+            }
         } else if (null != req.getParameter("dislike")) {
             currUser.setYesNo(2);
+            if (userLoggedId != -1) {
+                wholeProcess.getPersistence().getLikeService().update(new Like(
+                        userLoggedId,
+                        currUser.getUserId(),
+                        false
+                ));
+            }
         } else {
             currUser.setYesNo(0);
         }
 
-//        String yesNo = req.getParameter("yes_no");
-//        if ("yes".equalsIgnoreCase(yesNo)) {
-//
-//            currUser.setYesNo(1);
-//
-//        } else if ("no".equalsIgnoreCase(yesNo)) {
-//
-//            currUser.setYesNo(2);
-//
-//        } else {
-//
-//            currUser.setYesNo(0);
-//
-//        }
-//
         if (users.indexOf(currUser) + 1 >= users.size()) {
-//            resp.setStatus(HttpServletResponse.SC_FOUND);
-//            resp.sendRedirect("/liked");
             currUser = users.get(0);
             doGet(req, resp);
         } else {

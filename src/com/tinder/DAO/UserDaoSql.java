@@ -71,7 +71,6 @@ public class UserDaoSql implements DAO<User> {
     @Override
     public User insert(User item) {
         String insertQuery = "INSERT INTO users (login, firstname, lastname, password, photolink) VALUES(?,?,?,?,?)";
-        System.out.println("set sql statment");///////////////////////////
         try (
                 PreparedStatement ps = con.prepareStatement(insertQuery,
                         Statement.RETURN_GENERATED_KEYS)

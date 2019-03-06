@@ -1,5 +1,6 @@
 package com.tinder.Servlets;
 
+import com.tinder.Cookies.Session;
 import com.tinder.Utils.Authenticator;
 import com.tinder.Utils.FreeMarker;
 import com.tinder.Utils.Params;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class RegisterServlet extends HttpServlet {
     private final WholeProcess wholeProcess;
@@ -32,7 +34,13 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        template.render("register.html", resp);
+        HashMap<String, Object> data = new HashMap<>();
+
+        Session session = new Session(req);
+        data.put("IsAnybodyLogged", session.isAnybodyLogged());
+
+        template.render("register.html", data, resp);
+
     }
 
     @Override

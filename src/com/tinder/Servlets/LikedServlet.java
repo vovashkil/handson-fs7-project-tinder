@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,10 +33,12 @@ public class LikedServlet extends HttpServlet {
         if (session.isAnybodyLogged()) {
             userLoggedId = session.whoLogged();
             data.put("loginUserId", userLoggedId);
+            data.put("loginUser", wholeProcess.user(userLoggedId));
         } else {
             userLoggedId = -1;
             data.put("loginUserId", -1);
         }
+        data.put("IsAnybodyLogged", session.isAnybodyLogged());
         List<User> users = wholeProcess.getPersistence().getLikeService().getUsersLiked(userLoggedId);
         data.put("likedlist", users.toArray());
 
