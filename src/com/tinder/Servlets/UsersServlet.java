@@ -106,6 +106,7 @@ public class UsersServlet extends HttpServlet {
         } else {
             currUser.setYesNo(0);
         }
+
 //        String yesNo = req.getParameter("yes_no");
 //        if ("yes".equalsIgnoreCase(yesNo)) {
 //
@@ -122,8 +123,10 @@ public class UsersServlet extends HttpServlet {
 //        }
 //
         if (users.indexOf(currUser) + 1 >= users.size()) {
-            resp.setStatus(HttpServletResponse.SC_FOUND);
-            resp.sendRedirect("/liked");
+//            resp.setStatus(HttpServletResponse.SC_FOUND);
+//            resp.sendRedirect("/liked");
+            currUser = users.get(0);
+            doGet(req, resp);
         } else {
             currUser = users.get(users.indexOf(currUser) + 1);
             doGet(req, resp);
