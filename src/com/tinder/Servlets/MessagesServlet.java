@@ -2,7 +2,6 @@ package com.tinder.Servlets;
 
 import com.tinder.Cookies.Session;
 import com.tinder.Dto.Message;
-import com.tinder.Service.MessageService;
 import com.tinder.Utils.FreeMarker;
 import com.tinder.Utils.WholeProcess;
 
@@ -41,31 +40,6 @@ public class MessagesServlet extends HttpServlet {
 
         HashMap<String, Object> data = new HashMap<>();
 
-//        Session session = new Session(req);
-//        if (session.isAnybodyLogged()) {
-//            data.put("loginUserId", session.whoLogged());
-//            userLoggedId = session.whoLogged();
-//        } else data.put("loginUserId", "UnLogged");
-
-//
-//        resp.setContentType("text/html");
-//        resp.setStatus(HttpServletResponse.SC_OK);
-//        resp.getWriter().println("<h1>Messages</h1>");
-//        resp.getWriter().printf("<p>From/to loggedUserID =%d to/from %d</p>", userLoggedId, id);
-//
-//        for (Message message : messages.getAll()) {
-//            if (message.getUserIdTo() == id && message.getUserIdFrom() == userLoggedId
-//                    || message.getUserIdFrom() == id && message.getUserIdTo() == userLoggedId) {
-//                resp.getWriter().printf("<p>%s</p>", message.toString());
-//            }
-//        }
-//
-//        resp.getWriter().printf("<form action=\"/messages/%d\" method=\"POST\">\n", id);
-//        resp.getWriter().printf("<input name=\"input\", type=\"text\"></input>\n");
-//        resp.getWriter().printf("<button label=\"Submit\", type=\"submit\">Submit</button>\n");
-//
-//        resp.getWriter().printf("</form>\n");
-
         data.put("messageUser", wholeProcess.getPersistence().getUserService().get(id));
 
         Session session = new Session(req);
@@ -76,7 +50,7 @@ public class MessagesServlet extends HttpServlet {
             userLoggedId = -1;
             data.put("loginUserId", -1);
         }
-
+        data.put("IsAnybodyLogged", session.isAnybodyLogged());
         List<Message> messages = wholeProcess.getPersistence().getMessageService().getMessagesBetweenUser(userLoggedId, id);
         data.put("messages", messages.toArray());
 

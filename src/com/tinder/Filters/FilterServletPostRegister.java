@@ -1,5 +1,6 @@
 package com.tinder.Filters;
 
+import com.tinder.Servlets.RegisterServlet;
 import com.tinder.Utils.Params;
 
 import javax.servlet.*;
@@ -16,12 +17,12 @@ public class FilterServletPostRegister implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
-//        if (httpRequest.getMethod().equalsIgnoreCase("POST")
-//                && !new Params(httpRequest).containsAll(ServletRegister.f_p1, ServletRegister.f_p2, ServletRegister.f_lg, ServletRegister.f_gr, ServletRegister.f_nm)) {
-//            ((HttpServletResponse) servletResponse).sendRedirect("/register");
-//        } else {
-//            filterChain.doFilter(servletRequest, servletResponse);
-//        }
+        if (httpRequest.getMethod().equalsIgnoreCase("POST")
+                && !new Params(httpRequest).containsAll(RegisterServlet.f_lg, RegisterServlet.f_pw, RegisterServlet.f_lg, RegisterServlet.f_fn, RegisterServlet.f_ph)) {
+            ((HttpServletResponse) servletResponse).sendRedirect("/register");
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
+        }
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

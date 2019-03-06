@@ -1,13 +1,9 @@
 package com.tinder;
 
-import com.tinder.Connection.DbConnection;
 import com.tinder.DAO.DAO;
-import com.tinder.Dto.Message;
 import com.tinder.Dto.User;
 import com.tinder.Filters.FilterServletAnybodyLogged;
 import com.tinder.Filters.FilterServletPostLogin;
-import com.tinder.Service.MessageService;
-import com.tinder.Service.UserService;
 import com.tinder.Servlets.*;
 import com.tinder.Utils.FreeMarker;
 import com.tinder.Utils.Persistence;
@@ -17,9 +13,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
-import java.sql.Connection;
 import java.util.EnumSet;
-import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -33,14 +27,15 @@ public class App {
 
         handler.addServlet(AssetsServlet.class, "/assets/*");
 
-        handler.addServlet(new ServletHolder(new LoginServlet(wholeProcess, template)), "/login/*");
-        handler.addServlet(new ServletHolder(new RegisterServlet(wholeProcess, template)), "/register/*");
+        handler.addServlet(new ServletHolder(new RegisterServlet(wholeProcess, template)), "/register");
+        handler.addServlet(new ServletHolder(new LoginServlet(wholeProcess, template)), "/login");
+        handler.addServlet(new ServletHolder(new LogoutServlet()), "/logout");
         handler.addServlet(new ServletHolder(new UsersServlet(wholeProcess, template)), "/users");
         handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template)), "/liked");
         handler.addServlet(new ServletHolder(new MessagesServlet(wholeProcess, template)), "/messages/*");
         handler.addServlet(new ServletHolder(new RedirectToServlet("/login")), "/*");
 
-//        handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        // handler.addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
         handler.addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
         handler.addFilter(FilterServletAnybodyLogged.class, "/users/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
         handler.addFilter(FilterServletAnybodyLogged.class, "/liked/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
@@ -48,7 +43,6 @@ public class App {
 
         server.start();
         server.join();
-
     }
 
     private void initUsersList(DAO<User> userDao) {
