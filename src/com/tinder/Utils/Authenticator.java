@@ -1,6 +1,8 @@
 package com.tinder.Utils;
 
 import com.tinder.Cookies.EncodeDecode;
+import com.tinder.DAO.DAO;
+import com.tinder.DAO.UserDaoSql;
 import com.tinder.Dto.User;
 
 import java.util.List;
@@ -58,23 +60,19 @@ public class Authenticator {
         return new Result(success, message, user);
     }
 
-//    public Result register(String login, String pwd1, String pwd2, String name, int group) {
-//        boolean success = false;
-//        String message = "";
-//        User user = new User();
-//
-//        if (!pwd1.equals(pwd2)) {
-//            message = "Password mismatch";
-//        } else {
-//            DAOPgUser dao = persistence.get(User.class).dao();
-//            int amount = dao.getByLogin(login, true).size();
-//            if (amount == 0) {
-//                user = dao.store(new User(name, login, new EncodeDecode().encrypt(pwd1), group));
-//                success = true;
-//            } else {
-//                message = "User already registered, please recall your password or register with another e-mail";
-//            }
-//        }
-//        return new Result(success, message, user);
-//    }
+    public Result register(String login, String pwd, String firstname, String lastname, String photolink) {
+        boolean success = false;
+        String message = "";
+        User user = new User();
+
+        int amount = persistence.getUserService().getByLogin(login, true).size();
+        if (amount == 0) {
+            user = persistence.getUserService().insert(new User(login, firstname, lastname, pwd, photolink));
+            success = true;
+        } else {
+            message = "User already registered, please recall your password or register with another e-mail";
+        }
+
+        return new Result(success, message, user);
+    }
 }

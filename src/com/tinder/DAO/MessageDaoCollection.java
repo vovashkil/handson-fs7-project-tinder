@@ -20,6 +20,11 @@ public class MessageDaoCollection implements DAO<Message> {
     }
 
     @Override
+    public Message insert(Message item) {
+        return null;
+    }
+
+    @Override
     public boolean update(Message item) {
         return false;
     }

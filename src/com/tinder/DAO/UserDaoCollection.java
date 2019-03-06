@@ -22,6 +22,11 @@ public class UserDaoCollection implements DAO<User> {
     }
 
     @Override
+    public User insert(User item) {
+        return null;
+    }
+
+    @Override
     public boolean update(User user) {
 
         boolean result = false;

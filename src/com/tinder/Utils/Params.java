@@ -41,18 +41,8 @@ public class Params {
         return params.get(key)[0];
     }
 
-//    private String green(String origin) {
-//        return Colored.build(origin, Attribute.GREEN);
-//    }
-
     @Override
     public String toString() {
         return params.toString();
-//        return String.join("",
-//                "{",
-//                params.entrySet().stream()
-//                        .map(e -> String.format("%s=[%s]", e.getKey(), green(e.getValue()[0])))
-//                        .collect(Collectors.joining(",")),
-//                "}");
     }
 }
