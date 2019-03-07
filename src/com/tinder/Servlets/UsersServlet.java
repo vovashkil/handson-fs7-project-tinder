@@ -36,6 +36,9 @@ public class UsersServlet extends HttpServlet {
 
         Session session = new Session(req);
         if (session.isAnybodyLogged()) {
+            if (userLoggedId != session.whoLogged()) {
+                users = null;
+            }
             userLoggedId = session.whoLogged();
             data.put("loginUser", wholeProcess.user(userLoggedId));
             data.put("IsAnybodyLogged", session.isAnybodyLogged());
