@@ -1,0 +1,14 @@
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (1, 16, 8, 'Hello Gabi', '2019-02-28 06:26:10.243867');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (2, 8, 16, 'Hola Diego', '2019-02-28 06:26:10.288086');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (3, 16, 8, 'Hello Gabi', '2019-02-28 06:27:07.455126');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (4, 8, 16, 'Hola Diego', '2019-02-28 06:27:07.498329');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (5, 16, 8, 'Hello Gabi', '2019-02-28 06:30:15.189588');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (6, 8, 16, 'Hola Diego', '2019-02-28 06:30:15.232842');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (15, 10, 17, 'іфвіф', '2019-03-04 09:05:51.141709');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (24, 10, 17, 'Привет', '2019-03-04 09:07:32.220315');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (25, 10, 17, 'Как сегодня погода?', '2019-03-04 09:07:48.852052');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (26, 17, 10, 'Привет, Олег!', '2019-03-04 09:10:54.501011');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (27, 17, 10, 'Привет, Марко!', '2019-03-04 09:11:07.102956');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (28, 10, 17, 'Как там погода в Амстере?', '2019-03-04 09:11:18.141338');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (29, 10, 17, 'Дождь, а у вас?', '2019-03-04 09:11:30.581529');
+INSERT INTO public.messages (id, from_userid, to_userid, message, sendtime) VALUES (30, 17, 10, 'снег.', '2019-03-04 09:11:35.514721');

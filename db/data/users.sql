@@ -1,0 +1,5 @@
+INSERT INTO public.users (id, login, firstname, lastname, password, photolink) VALUES (16, 'diego', 'Diego', 'Maradona', '1', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Diego_Maradona_2012_2.jpg/800px-Diego_Maradona_2012_2.jpg');
+INSERT INTO public.users (id, login, firstname, lastname, password, photolink) VALUES (17, 'marco', 'Marco', 'van Basten', '1', 'https://m.media-amazon.com/images/M/MV5BZjAxYTI3OGMtODM5Ni00M2MxLWFlNmMtYmI4NjIxYTVlODc2XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_SY1000_CR0,0,797,1000_AL_.jpg');
+INSERT INTO public.users (id, login, firstname, lastname, password, photolink) VALUES (8, 'gabriel', 'Gabriel', 'Batistuta', '1', 'https://abudhabiblog.com/wp-content/uploads/2015/05/batistuta-argentina-football.jpg');
+INSERT INTO public.users (id, login, firstname, lastname, password, photolink) VALUES (9, 'eric', 'Eric', 'Cantona', '1', 'https://news.images.itv.com/image/file/991160/stream_img.jpg');
+INSERT INTO public.users (id, login, firstname, lastname, password, photolink) VALUES (10, 'oleg', 'Oleg', 'Blokhin', '1', 'https://lvironpigs.files.wordpress.com/2011/12/1a1a1a1a1a1a1a283.jpg');
