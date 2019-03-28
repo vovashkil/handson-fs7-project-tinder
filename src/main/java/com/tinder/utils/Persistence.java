@@ -1,9 +1,9 @@
-package com.tinder.Utils;
+package com.tinder.utils;
 
-import com.tinder.Connection.DbConnection;
-import com.tinder.Service.LikeService;
-import com.tinder.Service.MessageService;
-import com.tinder.Service.UserService;
+import com.tinder.connection.DbConnection;
+import com.tinder.service.LikeService;
+import com.tinder.service.MessageService;
+import com.tinder.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

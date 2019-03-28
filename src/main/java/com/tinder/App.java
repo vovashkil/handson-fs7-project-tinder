@@ -1,13 +1,13 @@
 package com.tinder;
 
-import com.tinder.DAO.DAO;
-import com.tinder.Dto.User;
-import com.tinder.Filters.FilterServletAnybodyLogged;
-import com.tinder.Filters.FilterServletPostLogin;
-import com.tinder.Servlets.*;
-import com.tinder.Utils.FreeMarker;
-import com.tinder.Utils.Persistence;
-import com.tinder.Utils.WholeProcess;
+import com.tinder.dao.DAO;
+import com.tinder.dto.User;
+import com.tinder.filters.FilterServletAnybodyLogged;
+import com.tinder.filters.FilterServletPostLogin;
+import com.tinder.servlets.*;
+import com.tinder.utils.FreeMarker;
+import com.tinder.utils.Persistence;
+import com.tinder.utils.WholeProcess;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;

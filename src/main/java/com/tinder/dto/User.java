@@ -1,4 +1,4 @@
-package com.tinder.Dto;
+package com.tinder.dto;
 
 public class User {
 

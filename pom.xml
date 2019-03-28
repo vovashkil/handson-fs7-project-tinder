@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tinder</groupId>
-    <artifactId>tinder</artifactId>
+    <artifactId>tinderapp</artifactId>
     <version>1.0.1</version>
 
     <properties>

@@ -1,7 +1,7 @@
-package com.tinder.Filters;
+package com.tinder.filters;
 
-import com.tinder.Servlets.LoginServlet;
-import com.tinder.Utils.Params;
+import com.tinder.servlets.LoginServlet;
+import com.tinder.utils.Params;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

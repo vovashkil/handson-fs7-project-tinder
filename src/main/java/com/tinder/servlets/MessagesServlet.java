@@ -1,9 +1,9 @@
-package com.tinder.Servlets;
+package com.tinder.servlets;
 
-import com.tinder.Cookies.Session;
-import com.tinder.Dto.Message;
-import com.tinder.Utils.FreeMarker;
-import com.tinder.Utils.WholeProcess;
+import com.tinder.cookies.Session;
+import com.tinder.dto.Message;
+import com.tinder.utils.FreeMarker;
+import com.tinder.utils.WholeProcess;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

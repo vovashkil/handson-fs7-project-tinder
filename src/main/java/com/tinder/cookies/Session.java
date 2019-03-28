@@ -1,12 +1,8 @@
-package com.tinder.Cookies;
+package com.tinder.cookies;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
 
 public class Session {
     private static final String COOKIE_UID = "UID";

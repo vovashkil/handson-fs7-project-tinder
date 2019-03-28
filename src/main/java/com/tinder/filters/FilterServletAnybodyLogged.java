@@ -1,7 +1,7 @@
-package com.tinder.Filters;
+package com.tinder.filters;
 
 
-import com.tinder.Cookies.Session;
+import com.tinder.cookies.Session;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.tinder.Cookies;
+package com.tinder.cookies;
 
 import java.util.ArrayList;
 import java.util.Arrays;

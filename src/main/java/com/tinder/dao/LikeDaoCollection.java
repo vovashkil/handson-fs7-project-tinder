@@ -1,6 +1,6 @@
-package com.tinder.DAO;
+package com.tinder.dao;
 
-import com.tinder.Dto.Like;
+import com.tinder.dto.Like;
 
 import java.util.ArrayList;
 import java.util.List;

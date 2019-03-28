@@ -1,4 +1,4 @@
-package com.tinder.Utils;
+package com.tinder.utils;
 
 public class MessageFormatted {
     private final String format;

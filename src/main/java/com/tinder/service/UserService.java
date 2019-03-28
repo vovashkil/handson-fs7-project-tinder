@@ -1,13 +1,12 @@
-package com.tinder.Service;
+package com.tinder.service;
 
-import com.tinder.DAO.DAO;
-import com.tinder.DAO.UserDaoSql;
-import com.tinder.Dto.User;
+import com.tinder.dao.DAO;
+import com.tinder.dao.UserDaoSql;
+import com.tinder.dto.User;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class UserService {

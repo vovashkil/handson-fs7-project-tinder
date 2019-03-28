@@ -1,8 +1,8 @@
-package com.tinder.Service;
+package com.tinder.service;
 
-import com.tinder.DAO.DAO;
-import com.tinder.DAO.MessageDaoSql;
-import com.tinder.Dto.Message;
+import com.tinder.dao.DAO;
+import com.tinder.dao.MessageDaoSql;
+import com.tinder.dto.Message;
 
 import java.sql.Connection;
 import java.util.ArrayList;

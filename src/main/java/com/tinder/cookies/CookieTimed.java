@@ -1,4 +1,4 @@
-package com.tinder.Cookies;
+package com.tinder.cookies;
 
 import javax.servlet.http.Cookie;
 

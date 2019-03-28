@@ -1,10 +1,10 @@
-package com.tinder.Servlets;
+package com.tinder.servlets;
 
-import com.tinder.Cookies.Session;
-import com.tinder.Utils.Authenticator;
-import com.tinder.Utils.FreeMarker;
-import com.tinder.Utils.Params;
-import com.tinder.Utils.WholeProcess;
+import com.tinder.cookies.Session;
+import com.tinder.utils.Authenticator;
+import com.tinder.utils.FreeMarker;
+import com.tinder.utils.Params;
+import com.tinder.utils.WholeProcess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

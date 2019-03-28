@@ -1,6 +1,6 @@
-package com.tinder.Utils;
+package com.tinder.utils;
 
-import com.tinder.Dto.User;
+import com.tinder.dto.User;
 
 public class WholeProcess {
     private final Persistence persistence;

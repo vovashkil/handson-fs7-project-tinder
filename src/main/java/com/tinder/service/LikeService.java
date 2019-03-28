@@ -1,16 +1,14 @@
-package com.tinder.Service;
+package com.tinder.service;
 
-import com.tinder.DAO.DAO;
-import com.tinder.DAO.LikeDaoSql;
-import com.tinder.Dto.Like;
-import com.tinder.Dto.User;
+import com.tinder.dao.DAO;
+import com.tinder.dao.LikeDaoSql;
+import com.tinder.dto.Like;
+import com.tinder.dto.User;
 
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class LikeService {
     private final DAO<Like> likeDao;

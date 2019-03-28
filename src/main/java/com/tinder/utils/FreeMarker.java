@@ -1,4 +1,4 @@
-package com.tinder.Utils;
+package com.tinder.utils;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;

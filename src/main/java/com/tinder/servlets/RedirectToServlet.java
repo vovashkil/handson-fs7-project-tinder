@@ -1,4 +1,4 @@
-package com.tinder.Servlets;
+package com.tinder.servlets;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

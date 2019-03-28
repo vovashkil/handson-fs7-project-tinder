@@ -1,9 +1,8 @@
-package com.tinder.Utils;
+package com.tinder.utils;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Params {
     private final Map<String, String[]> params;

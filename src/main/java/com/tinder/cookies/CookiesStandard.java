@@ -1,4 +1,4 @@
-package com.tinder.Cookies;
+package com.tinder.cookies;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

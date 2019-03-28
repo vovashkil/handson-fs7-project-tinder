@@ -1,6 +1,6 @@
-package com.tinder.Servlets;
+package com.tinder.servlets;
 
-import com.tinder.Cookies.Session;
+import com.tinder.cookies.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

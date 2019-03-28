@@ -1,8 +1,5 @@
-package com.tinder.DAO;
+package com.tinder.dao;
 
-import com.tinder.Connection.DbConnection;
-
-import java.sql.Connection;
 import java.util.List;
 
 public interface DAO<T> {

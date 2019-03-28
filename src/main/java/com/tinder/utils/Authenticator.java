@@ -1,9 +1,6 @@
-package com.tinder.Utils;
+package com.tinder.utils;
 
-import com.tinder.Cookies.EncodeDecode;
-import com.tinder.DAO.DAO;
-import com.tinder.DAO.UserDaoSql;
-import com.tinder.Dto.User;
+import com.tinder.dto.User;
 
 import java.util.List;
 
