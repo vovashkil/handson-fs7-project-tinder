@@ -1,6 +1,6 @@
 package com.tinder;
 
-import com.tinder.filters.FilterServletAnybodyLogged;
+import com.tinder.filters.FilterIsAnybodyLogged;
 import com.tinder.servlets.*;
 import com.tinder.utils.FreeMarker;
 import com.tinder.utils.Persistence;
@@ -37,9 +37,9 @@ public class App {
         handler.addServlet(new ServletHolder(new LikedServlet(wholeProcess, template)), "/liked");
         handler.addServlet(new ServletHolder(new MessagesServlet(wholeProcess, template)), "/messages/*");
 
-        handler.addFilter(FilterServletAnybodyLogged.class, "/users/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
-        handler.addFilter(FilterServletAnybodyLogged.class, "/liked/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
-        handler.addFilter(FilterServletAnybodyLogged.class, "/messages/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        handler.addFilter(FilterIsAnybodyLogged.class, "/users/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        handler.addFilter(FilterIsAnybodyLogged.class, "/liked/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        handler.addFilter(FilterIsAnybodyLogged.class, "/messages/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
         server.start();
         server.join();
