@@ -51,7 +51,7 @@ public class MessagesServlet extends HttpServlet {
             data.put("loginUserId", -1);
         }
         data.put("IsAnybodyLogged", session.isAnybodyLogged());
-        List<Message> messages = wholeProcess.getPersistence().getMessageService().getMessagesBetweenUser(userLoggedId, id);
+        List<Message> messages = wholeProcess.getPersistence().getMessageService().getMessagesBetweenUsers(userLoggedId, id);
         data.put("messages", messages.toArray());
 
         template.render("chat.ftl", data, resp);

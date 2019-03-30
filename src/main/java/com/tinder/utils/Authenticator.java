@@ -47,7 +47,6 @@ public class Authenticator {
             message = new MessageFormatted("Looks like you entered only part of your email (%s) because too many matching records found in database", login).get();
         } else {
             user = byLogin.get(0);
-//            if (!user.getPassword().equals(new EncodeDecode().encrypt(pwd))) {
             if (!user.getPassword().equals(pwd)) {
                 message = "Entered password don't match, try again";
             } else {

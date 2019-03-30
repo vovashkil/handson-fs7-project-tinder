@@ -17,8 +17,6 @@ public class LikedServlet extends HttpServlet {
     private final WholeProcess wholeProcess;
     private final FreeMarker template;
 
-    int userLoggedId = 0;
-
     public LikedServlet(WholeProcess wholeProcess, FreeMarker template) {
         this.wholeProcess = wholeProcess;
         this.template = template;
@@ -30,23 +28,19 @@ public class LikedServlet extends HttpServlet {
         HashMap<String, Object> data = new HashMap<>();
 
         Session session = new Session(req);
+
         if (session.isAnybodyLogged()) {
-            userLoggedId = session.whoLogged();
-            data.put("loginUserId", userLoggedId);
-            data.put("loginUser", wholeProcess.user(userLoggedId));
-        } else {
-            userLoggedId = -1;
-            data.put("loginUserId", -1);
+
+            data.put("loginUserId", session.whoLogged());
+            data.put("loginUser", wholeProcess.user(session.whoLogged()));
+
+            data.put("IsAnybodyLogged", session.isAnybodyLogged());
+            List<User> users = wholeProcess.getPersistence().getLikeService().getUsersLiked(session.whoLogged());
+            data.put("likedlist", users.toArray());
+
+            template.render("people-list.ftl", data, resp);
+
         }
-        data.put("IsAnybodyLogged", session.isAnybodyLogged());
-        List<User> users = wholeProcess.getPersistence().getLikeService().getUsersLiked(userLoggedId);
-        data.put("likedlist", users.toArray());
-
-        template.render("people-list.ftl", data, resp);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
 }

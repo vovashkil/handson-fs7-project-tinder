@@ -14,7 +14,6 @@ public class Session {
     }
 
     public Session(final HttpServletRequest req) {
-//        this(new CookiesEncrypted(req));
         this(new CookiesStandard(req));
     }
 

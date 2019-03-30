@@ -80,7 +80,7 @@ public class MessageDaoSql implements DAO<Message> {
         return false;
     }
 
-    public List<Message> getMessagesBetweenUser(int self, int userid) {
+    public List<Message> getMessagesBetweenUsers(int self, int userid) {
         List<Message> list = new ArrayList<>();
 
         final String sql =

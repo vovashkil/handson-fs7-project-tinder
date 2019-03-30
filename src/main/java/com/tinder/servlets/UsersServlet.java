@@ -32,6 +32,7 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
             IOException {
 
+
         HashMap<String, Object> data = new HashMap<>();
 
         Session session = new Session(req);
@@ -60,7 +61,9 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Session session = new Session(req);
+
         if (session.isAnybodyLogged()) {
             userLoggedId = session.whoLogged();
         } else {
@@ -91,7 +94,6 @@ public class UsersServlet extends HttpServlet {
 
         if (users.indexOf(currUser) + 1 >= users.size()) {
             currUser = users.get(0);
-//            doGet(req, resp);
             resp.sendRedirect("/liked");
 
         } else {

@@ -35,9 +35,9 @@ public class MessageService {
         messageDao.remove(item);
     }
 
-    public List<Message> getMessagesBetweenUser(int self, int userid) {
+    public List<Message> getMessagesBetweenUsers(int self, int userid) {
         if (messageDao instanceof MessageDaoSql) {
-            return ((MessageDaoSql) messageDao).getMessagesBetweenUser(self, userid);
+            return ((MessageDaoSql) messageDao).getMessagesBetweenUsers(self, userid);
         } else {
             return new ArrayList<>();
         }

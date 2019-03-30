@@ -20,17 +20,12 @@ public class FreeMarker {
 
     public FreeMarker(final String path) throws IOException {
         this.config = new Configuration(Configuration.VERSION_2_3_28) {{
-//            setDirectoryForTemplateLoading(new File(path));
             setClassForTemplateLoading(this.getClass(), path);
             setDefaultEncoding(String.valueOf(StandardCharsets.UTF_8));
             setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
             setLogTemplateExceptions(false);
             setWrapUncheckedExceptions(true);
         }};
-    }
-
-    public void render(final String templateFile, final HttpServletResponse resp) throws IOException {
-        render(templateFile, new HashMap<>(), resp);
     }
 
     public void render(final String templateFile, final Map<String, Object> data, final HttpServletResponse resp) throws IOException {

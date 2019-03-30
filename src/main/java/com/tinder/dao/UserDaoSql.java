@@ -80,7 +80,7 @@ public class UserDaoSql implements DAO<User> {
             ps.setString(3, item.getLastName());
             ps.setString(4, item.getPassword());
             ps.setString(5, item.getPhotoLink());
-            System.out.println("after set params");////////////////
+
             int affectedRows = ps.executeUpdate();
 
             if (affectedRows == 0) {
