@@ -2,11 +2,9 @@ package com.tinder.dao;
 
 import com.tinder.dto.Message;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,11 +52,12 @@ public class MessageDaoSql implements DAO<Message> {
     public boolean update(Message item) {
         boolean result = false;
         try {
-            String insertQuery = "INSERT INTO messages (from_userid, to_userid, message) VALUES(?,?,?)";
+            String insertQuery = "INSERT INTO messages (from_userid, to_userid, message, sendtime) VALUES(?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(insertQuery);
             ps.setInt(1, item.getUserIdFrom());
             ps.setInt(2, item.getUserIdTo());
             ps.setString(3, item.getMessage());
+            ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
             ps.executeUpdate();
             ps.close();
 
