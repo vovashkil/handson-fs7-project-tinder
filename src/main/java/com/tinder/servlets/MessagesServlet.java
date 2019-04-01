@@ -35,7 +35,7 @@ public class MessagesServlet extends HttpServlet {
             id = Integer.parseInt(idString);
         } catch (IllegalArgumentException e) {
             id = -1;
-            System.out.println("Something went wrong: " + e.getMessage());
+            System.out.println("[doGet]Something went wrong parsing PathInfo: " + e.getMessage());
         }
 
         HashMap<String, Object> data = new HashMap<>();
