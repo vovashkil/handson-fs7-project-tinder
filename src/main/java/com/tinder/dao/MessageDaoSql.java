@@ -103,7 +103,7 @@ public class MessageDaoSql implements DAO<Message> {
                 list.add(new Message(messageId, userIdFrom, userIdTo, message, messageTime));
             }
         } catch (SQLException e) {
-            System.out.printf("Something went wrong: %s\n", e.getMessage());
+            System.out.printf("Something went wrong in getMessagesBetweenUsers: %s\n", e.getMessage());
         }
 
         return list;
