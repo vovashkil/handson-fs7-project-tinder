@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.Clock;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,7 +64,8 @@ public class MessagesServlet extends HttpServlet {
         wholeProcess.getPersistence().getMessageService().update(new Message(
                 userLoggedId,
                 id,
-                req.getParameter("input")
+                req.getParameter("input"),
+                LocalDateTime.now(Clock.systemUTC())
         ));
 
         doGet(req, resp);
